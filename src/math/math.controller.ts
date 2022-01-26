@@ -1,9 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, ParseIntPipe, Query } from '@nestjs/common';
+import { MathService } from './math.service';
 
 @Controller()
 export class MathController {
+  private readonly _mathService: MathService;
+  constructor(mathService: MathService) {
+    this._mathService = mathService;
+  }
+
   @Get('sum')
-  sum(): number {
-    return 5;
+  sum(
+    @Query('firstNumber', ParseIntPipe) firstNumber: number,
+    @Query('secondNumber', ParseIntPipe) secondNumber: number,
+  ) {
+    return this._mathService.sumTwoNumbers(firstNumber, secondNumber);
   }
 }
