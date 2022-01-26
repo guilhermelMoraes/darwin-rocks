@@ -1,4 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
-@Controller('math')
-export class MathController {}
+@Controller()
+export class MathController {
+  @Get('sum')
+  sum(): number {
+    return 5;
+  }
+}
