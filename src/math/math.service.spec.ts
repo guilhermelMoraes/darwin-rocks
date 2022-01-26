@@ -1,23 +1,28 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MathService } from './math.service';
 
-describe('MathService', () => {
-  let service: MathService;
+describe('MathService | Sum', () => {
+  let sut: MathService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [MathService],
     }).compile();
 
-    service = module.get<MathService>(MathService);
+    sut = module.get<MathService>(MathService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(sut).toBeDefined();
   });
 
-  it('should sum two numbers', () => {
-    const sut = MathService.sumTwoNumbers(2, 2);
-    expect(sut).toBe(4);
+  it('2 + 2 = 4', () => {
+    const sum = sut.sumTwoNumbers(2, 2);
+    expect(sum).toBe(4);
+  });
+
+  it('5 + 5 = 10', () => {
+    const sum = sut.sumTwoNumbers(5, 5);
+    expect(sum).toBe(10);
   });
 });
